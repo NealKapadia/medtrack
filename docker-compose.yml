@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  frontend:
+    build: ./medtrack-frontend
+    ports:
+      - "3001:3000"
+    environment:
+      REACT_APP_BACKEND_URL: http://localhost:5000
+
+  backend:
+    build: ./medtrack-backend
+    ports:
+      - "5000:5000"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/medtrack
+      JWT_SECRET: your_jwt_secret
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
